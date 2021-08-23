@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+</head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css"/>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"> </script>
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap4-datetimepicker@5.2.3/src/js/bootstrap-datetimepicker.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $("#hfSubmit").click(function () {
+
+            var name = $('#vinV').val();
+            alert($('#vin').val());
+            alert("Handler for .click() called." + name);
+        });
+
+
+
+        $.get("https://jsonplaceholder.typicode.com/todos", function (result) {
+
+            $('#table3').DataTable({
+                data: result,
+                columns: [
+                    { data: "userId" },
+                    { data: "id" },
+                    { data: "title" },
+                    { data: "completed" }
+
+                ]
+            });
+        });
+    });
+</script>
+
+
+
+<body>
+    <center>
+        <h1>High Fidelity Data Extract</h1>
+
+
+        <form id="hfForm">
+            <div id="search">
+                <div class="form-group"
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="vin">VIN</span>
+                    </div>
+                    <input type="text" id ="vinV" class="form-control" aria-label="Default"
+                        aria-describedby="inputGroup-sizing-default" >
+                </div>
+                <div class="form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="signalName">Signal Name</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Default"
+                        aria-describedby="inputGroup-sizing-default">
+                </div>
+
+
+                <div class="container">
+                    <div class="row">
+                        <div class='col-sm-6'>
+                            <div class="form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="startDate">StartDate</span>
+                                </div>
+                                <div class='input-group date' id='datetimepicker1'>
+                                    <input type='text' class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            $(function () {
+                                $('#datetimepicker1').datetimepicker();
+                            });
+                        </script>
+                    </div>
+                </div>
+
+
+
+                <div class="container">
+                    <div class="row">
+                        <div class='col-sm-6'>
+                            <div class="form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="endDate">EndDate</span>
+                                </div>
+                                <div class='input-group date' id='datetimepicker2'>
+                                    <input type='text' class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            $(function () {
+                                $('#datetimepicker2').datetimepicker();
+                            });
+                        </script>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary" id="hfSubmit">Submit</button>
+            </div>
+
+            <br>
+            <br>
+            <br>
+
+
+
+
+            <table id="table3">
+                <thead>
+                    <tr>
+                        <th>userId</th>
+                        <th>id</th>
+                        <th>title</th>
+                        <th>completed</th>
+                    </tr>
+                </thead>
+            </table>
+</body>
+
+</html>
