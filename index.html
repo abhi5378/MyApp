@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <title>Hello World</title>
 </head>
-<link rel="stylesheet" type="text/css" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" media="screen"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
 <link rel="stylesheet"
@@ -24,24 +25,23 @@
 
         $("#hfSubmit").click(function () {
 
-            var name = $('#vinV').val();
-            alert($('#vin').val());
-            alert("Handler for .click() called." + name);
-        });
+            var vin = $('#vinV').val();
+            var signalName = $('#signalName').val();
+            var stDate = $('#stDate').val();
+            var enddate = $('#endDate').val();
+            console.log(vin, signalName, stDate, enddate)
+            $.get("https://jsonplaceholder.typicode.com/todos", function (result) {
 
+                $('#table3').DataTable({
+                    data: result,
+                    columns: [
+                        { data: "userId" },
+                        { data: "id" },
+                        { data: "title" },
+                        { data: "completed" }
 
-
-        $.get("https://jsonplaceholder.typicode.com/todos", function (result) {
-
-            $('#table3').DataTable({
-                data: result,
-                columns: [
-                    { data: "userId" },
-                    { data: "id" },
-                    { data: "title" },
-                    { data: "completed" }
-
-                ]
+                    ]
+                });
             });
         });
     });
@@ -64,9 +64,9 @@
             </div>
             <div class="form-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="signalName">Signal Name</span>
+                    <span class="input-group-text">Signal Name</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Default"
+                <input type="text" class="form-control" id="signalName" aria-label="Default"
                     aria-describedby="inputGroup-sizing-default">
             </div>
             <div class="container">
@@ -74,17 +74,17 @@
                     <div class='col-sm-6'>
                         <div class="form-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="startDate">StartDate</span>
+                                <span class="input-group-text">StartDate</span>
                             </div>
                             <div class='input-group date' id='datetimepicker1'>
-                                <input type='text' class="form-control" />
+                                <input type='text' class="form-control" id="" />
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
             <div class="container">
@@ -92,10 +92,10 @@
                     <div class='col-sm-6'>
                         <div class="form-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="endDate">EndDate</span>
+                                <span class="input-group-text">EndDate</span>
                             </div>
                             <div class='input-group date' id='datetimepicker2'>
-                                <input type='text' class="form-control" />
+                                <input type='text' class="form-control" id="endDate" />
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
